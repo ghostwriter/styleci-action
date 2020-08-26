@@ -28,7 +28,7 @@ jobs:
         php-version: "7.4"
         extensions: curl
     - name: analyze code with StyleCI
-      uses: nathane/styleci-action@main # "@0.6" branch and "@v0.6.0" tag are also available
+      uses: nathane/styleci-action@main # "@0.6" branch and "@v0.6.1" tag are also available
       with:
         styleci_api_key: ${{ secrets.STYLECI_API_KEY }} # required
         # options: '--no-interaction --dry-run'         # optional
