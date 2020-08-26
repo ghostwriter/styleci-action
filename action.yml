@@ -1,0 +1,27 @@
+name: StyleCI CLI
+description: Analyze your PHP, JS and CSS code with StyleCI CLI.
+author: nathane
+branding:
+  icon: check-circle
+  color: green
+inputs:
+  styleci_api_key:
+    description: your StyleCI API key, available at https://github.styleci.io/profile.
+    default: ""
+    required: true
+  options:
+    description: set the command options for your StyleCI CLI.
+    default: "--no-interaction"
+    required: false
+  directory:
+    description: specify the directory to analyze.
+    default: "."
+    required: false
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  env:
+    STYLECI_GITHUB_API_KEY: ${{ inputs.styleci_api_key }}
+  args:
+    - ${{ inputs.options }}
+    - ${{ inputs.directory }}
