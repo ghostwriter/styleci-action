@@ -11,7 +11,7 @@ LABEL "maintainer"="Nathanael Esayeas"
 
 RUN apt-get update && apt-get -y install git && rm -rf /var/lib/apt/lists/*
 
-RUN php -r "copy('https://github.com/StyleCI/CLI/releases/download/v0.5.0/styleci.phar', 'styleci.phar');"
+RUN php -r "copy('https://github.com/StyleCI/CLI/releases/download/v0.5.1/styleci.phar', 'styleci.phar');"
 RUN chmod +x styleci.phar
 RUN mv styleci.phar /usr/local/bin/styleci
 
