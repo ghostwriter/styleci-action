@@ -9,9 +9,9 @@ LABEL "repository"="https://github.com/nathane/styleci-action"
 LABEL "homepage"="https://github.com/nathane/styleci-action"
 LABEL "maintainer"="Nathanael Esayeas"
 
-RUN php -r "copy('https://github.com/StyleCI/CLI/releases/download/v0.8.0/styleci.phar', 'styleci.phar');"
-RUN chmod +x styleci.phar
-RUN mv styleci.phar /usr/local/bin/styleci
+ENV PATH vendor/bin:$HOME/.composer/vendor/bin:$PATH
+
+RUN composer global require styleci/cli:^0.8
 
 RUN styleci --version
 
