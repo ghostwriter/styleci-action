@@ -1,4 +1,4 @@
-FROM php:7.4.9-cli
+FROM ghcr.io/nathane/php:7.4-base
 
 LABEL "com.github.actions.name"="StyleCI CLI"
 LABEL "com.github.actions.description"="Analyze your PHP, JS and CSS code with StyleCI CLI."
@@ -9,9 +9,7 @@ LABEL "repository"="https://github.com/nathane/styleci-action"
 LABEL "homepage"="https://github.com/nathane/styleci-action"
 LABEL "maintainer"="Nathanael Esayeas"
 
-RUN apt-get update && apt-get -y install git && rm -rf /var/lib/apt/lists/*
-
-RUN php -r "copy('https://github.com/StyleCI/CLI/releases/download/v0.7.0/styleci.phar', 'styleci.phar');"
+RUN php -r "copy('https://github.com/StyleCI/CLI/releases/download/v0.8.0/styleci.phar', 'styleci.phar');"
 RUN chmod +x styleci.phar
 RUN mv styleci.phar /usr/local/bin/styleci
 
