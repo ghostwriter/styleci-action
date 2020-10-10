@@ -11,7 +11,7 @@ LABEL "maintainer"="Nathanael Esayeas"
 
 ENV PATH vendor/bin:$HOME/.composer/vendor/bin:$PATH
 
-RUN composer global require styleci/cli:^0.8
+RUN composer global require styleci/cli:^0.9
 
 RUN styleci --version
 
