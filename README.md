@@ -1,11 +1,12 @@
 # StyleCI
+
 Analyze your PHP, JS and CSS code with StyleCI CLI.
 
 > Requires an account that has access to **StyleCI Pro** features.
 
-### Setup
+## Setup
 
-1. Find you StyleCI API key, available at https://github.styleci.io/profile.
+1. Find you StyleCI API key, available at <https://github.styleci.io/profile>.
 2. Go to your repo's secret settings `https://github.com/{user}/{repo}/settings/secrets/new`
 3. Add a new secret. (eg. **name**:`STYLECI_API_KEY` **value**:`Your-StyleCI-API-Key`)
 
@@ -28,16 +29,16 @@ jobs:
         php-version: "7.4"
         extensions: curl
     - name: analyze code with StyleCI
-      uses: nathane/styleci-action@latest # Available tags: "@1.0", "@v1.0.1"
+      uses: nathane/styleci-action@latest # Available tags: "@1.1", "@v1.1.0"
       with:
         styleci_api_key: ${{ secrets.STYLECI_API_KEY }} # required
         # options: '--no-interaction --dry-run'         # optional
         # directory: './'                               # optional
 ```
 
-### StyleCI CLI:
+### StyleCI CLI
 
-```
+```bash
 Usage:
   analyze [options] [--] [<directory>]
 

@@ -9,9 +9,11 @@ LABEL "repository"="https://github.com/nathane/styleci-action"
 LABEL "homepage"="https://github.com/nathane/styleci-action"
 LABEL "maintainer"="Nathanael Esayeas"
 
+COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer
+
 ENV PATH vendor/bin:$HOME/.composer/vendor/bin:$PATH
 
-RUN composer global require styleci/cli:^1.0
+RUN composer global require styleci/cli:^1.1
 
 RUN styleci --version
 
