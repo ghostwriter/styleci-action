@@ -1,6 +1,6 @@
 name: StyleCI CLI
 description: Analyze your PHP, JS and CSS code with StyleCI CLI.
-author: nathane
+author: ghostwriter
 branding:
   icon: check-circle
   color: green
