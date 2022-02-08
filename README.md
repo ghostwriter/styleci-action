@@ -29,7 +29,7 @@ jobs:
         php-version: "7.4"
         extensions: curl
     - name: analyze code with StyleCI
-      uses: ghostwriter/styleci-action@latest # Available tags: "@1.2", "@v1.2.0"
+      uses: nathane/styleci-action@latest # Available tags: "@1.2", "@v1.2.1"
       with:
         styleci_api_key: ${{ secrets.STYLECI_API_KEY }} # required
         # options: '--no-interaction --dry-run'         # optional
