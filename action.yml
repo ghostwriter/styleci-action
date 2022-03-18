@@ -19,7 +19,7 @@ inputs:
     required: false
 runs:
   using: "docker"
-  image: "Dockerfile"
+  image: "docker://ghcr.io/ghostwriter/styleci:latest"
   env:
     STYLECI_GITHUB_API_KEY: ${{ inputs.styleci_api_key }}
   args:
