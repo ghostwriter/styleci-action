@@ -1,4 +1,4 @@
-FROM ghcr.io/ghostwriter/php:8.1
+FROM ghcr.io/ghostwriter/php:7.4
 
 LABEL "com.github.actions.name"="StyleCI CLI"
 LABEL "com.github.actions.description"="Analyze your PHP, JS and CSS code with StyleCI CLI."
