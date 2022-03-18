@@ -5,6 +5,8 @@ LABEL "com.github.actions.description"="Analyze your PHP, JS and CSS code with S
 LABEL "com.github.actions.icon"="check-circle"
 LABEL "com.github.actions.color"="green"
 
+ARG STYLECI_VERSION
+
 RUN wget https://github.com/StyleCI/CLI/releases/download/${STYLECI_VERSION}/styleci.phar \
     && chmod +x styleci.phar && mv styleci.phar /usr/local/bin/styleci
 
