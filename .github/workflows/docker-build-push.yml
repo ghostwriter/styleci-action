@@ -4,7 +4,7 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: "0 */8 * * *" # Runs daily every 8 hours.
+    - cron: "0 */1 * * *" # Runs hourly.
 
 permissions:
   packages: "write"
@@ -16,11 +16,14 @@ concurrency:
 env:
   SUPPORTED_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
   DEFAULT_IMAGE: "ghcr.io/${{ github.repository_owner }}/styleci"
+  STYLECI_VERSION: "latest"
 
 jobs:
   builder:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "STYLECI_VERSION=$(git ls-remote --tags 'https://github.com/StyleCI/CLI.git' | tail -n1  | cut -d/ -f3)" >> $GITHUB_ENV
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
 
@@ -40,9 +43,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           images: ${{ env.DEFAULT_IMAGE }}
-          tags: type=raw,value=latest
+          tags: |
+            type=raw,value=${{ env.STYLECI_VERSION }}
+            type=raw,value=latest
 
-      - name: Build and push PHP latest image
+      - name: Build and push ${{ env.DEFAULT_IMAGE }}:${{ env.STYLECI_VERSION }}
         uses: docker/build-push-action@v2
         with:
           cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:cache
