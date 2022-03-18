@@ -22,7 +22,8 @@ jobs:
   builder:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "STYLECI_VERSION=$(git ls-remote --tags 'https://github.com/StyleCI/CLI.git' | tail -n1  | cut -d/ -f3)" >> $GITHUB_ENV
+      - name: Setup StyleCI CLI Versions
+        run: echo "STYLECI_VERSION=$(git ls-remote --tags 'https://github.com/StyleCI/CLI.git' | tail -n1  | cut -d/ -f3)" >> $GITHUB_ENV
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -49,6 +50,8 @@ jobs:
 
       - name: Build and push ${{ env.DEFAULT_IMAGE }}:${{ env.STYLECI_VERSION }}
         uses: docker/build-push-action@v2
+        env:
+          STYLECI_VERSION: ${{ env.STYLECI_VERSION }}
         with:
           cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:cache
           cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:cache,mode=max
