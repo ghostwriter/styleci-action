@@ -1,0 +1,50 @@
+name: Docker CI/CD
+
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 */8 * * *" # Runs daily every 8 hours.
+
+concurrency:
+  group: ${{ github.head_ref || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  SUPPORTED_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
+  DEFAULT_IMAGE: "ghcr.io/${{ github.repository_owner }}/styleci"
+
+jobs:
+  builder:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Login to GitHub Packages Docker Registry
+        uses: docker/login-action@v1
+        with:
+          password: ${{ secrets.GHT }}
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          github-token: ${{ secrets.GHT }}
+          images: ${{ env.DEFAULT_IMAGE }}
+          tags: type=raw,value=latest
+
+      - name: Build and push PHP latest image
+        uses: docker/build-push-action@v2
+        with:
+          cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:cache
+          cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:cache,mode=max
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
