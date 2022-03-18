@@ -6,6 +6,9 @@ on:
   schedule:
     - cron: "0 */8 * * *" # Runs daily every 8 hours.
 
+permissions:
+  packages: "write"
+
 concurrency:
   group: ${{ github.head_ref || github.ref }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
@@ -27,7 +30,7 @@ jobs:
       - name: Login to GitHub Packages Docker Registry
         uses: docker/login-action@v1
         with:
-          password: ${{ secrets.GHT }}
+          password: ${{ secrets.GITHUB_TOKEN }}
           registry: ghcr.io
           username: ${{ github.repository_owner }}
 
@@ -35,7 +38,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          github-token: ${{ secrets.GHT }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           images: ${{ env.DEFAULT_IMAGE }}
           tags: type=raw,value=latest
 
