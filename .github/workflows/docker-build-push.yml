@@ -3,8 +3,8 @@ name: Docker CI/CD
 on:
   push:
   pull_request:
-  schedule:
-    - cron: "0 */1 * * *" # Runs hourly.
+  #schedule:
+  #- cron: "0 */1 * * *" # Runs hourly.
 
 permissions:
   packages: "write"
