@@ -36,6 +36,21 @@ jobs:
         # directory: './'                               # optional
 ```
 
+### Docker
+
+```yml
+docker pull ghcr.io/ghostwriter/styleci:latest
+```
+
+```yml
+FROM ghcr.io/ghostwriter/styleci:latest
+```
+
+```yml
+docker pull ghcr.io/ghostwriter/styleci:v1.5.0
+FROM ghcr.io/ghostwriter/styleci:v1.5.0
+```
+
 ### StyleCI CLI
 
 ```bash
