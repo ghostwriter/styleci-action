@@ -1,8 +1,10 @@
 name: Docker CI/CD
 
 on:
-  push:
   pull_request:
+  push:
+  schedule:
+    - cron: "0 * * * *" # Runs hourly
   workflow_dispatch:
 
 permissions:
