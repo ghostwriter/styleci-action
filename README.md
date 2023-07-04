@@ -47,8 +47,8 @@ FROM ghcr.io/ghostwriter/styleci:latest
 ```
 
 ```yml
-docker pull ghcr.io/ghostwriter/styleci:v1.5.0
-FROM ghcr.io/ghostwriter/styleci:v1.5.0
+docker pull ghcr.io/ghostwriter/styleci:v1.5.1
+FROM ghcr.io/ghostwriter/styleci:v1.5.1
 ```
 
 ### StyleCI CLI
